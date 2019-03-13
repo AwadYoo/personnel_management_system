@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>error</title>
+</head>
+<body>
+
+<!--&lt;!&ndash;<div th:text="${'错误信息: '+ session.getAttribute('failureReason')}"&ndash;&gt;-->
+<!--<div th:text="${session.getAttribute('failureReason')}"-->
+     <!--style="text-align:center;background:#ff8ca9;"></div>-->
+
+<p th:text="${session.failureReason}" th:unless="${session == null}">[...]</p>
+
+<p>error......</p>
+</body>
+
+<script>
+
+</script>
+</html>

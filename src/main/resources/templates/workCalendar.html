@@ -1,0 +1,160 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+    <!--<meta charset="utf-8">-->
+    <!--<title th:text="${@sysParameter.platformName()}"></title>-->
+    <!--<meta name="renderer" content="webkit">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+    <!--<meta http-equiv="Access-Control-Allow-Origin" content="*">-->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
+    <!--<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+    <!--<meta name="format-detection" content="telephone=no">-->
+    <!--<link rel="stylesheet" th:href="@{/public/layui/css/layui.css}" media="all" />-->
+    <!--<link rel="stylesheet" th:href="@{/public/zTree/css/zTreeStyle/zTreeStyle.css}" media="all" />-->
+    <!--<link rel="stylesheet" th:href="@{/public/web/css/basicData/workCalendar.css}" media="all" />-->
+<!--</head>-->
+<!--<body>-->
+<!--<div class="content">-->
+    <!--<div class="layui-tab">-->
+            <!--<span class="layui-breadcrumb" lay-separator=">">-->
+                    <!--<a href="" th:text="#{page.label.home}">首页</a>-->
+                    <!--<a href="" th:text="#{page.label.basic.data}">基础数据</a>-->
+                    <!--<a><cite th:text="#{page.model.work.calendar}">工作日历</cite></a>-->
+                  <!--</span>-->
+   <!---->
+    <!--</div>-->
+    <!--<hr>-->
+    <!--<div class="layui-tab-content">-->
+        <!--<div class="objSelect">-->
+            <!--<span th:text="#{page.prediction.model.objectSelect}+'：'">对象选择：</span>-->
+            <!--<span class="layui-breadcrumb   objectbtn" lay-separator="|"></span>-->
+        <!--</div>-->
+        <!--<div class="layui-row">-->
+            <!--<div class="layui-col-md2">-->
+                <!--<div class="grid-parent calculation_tree">-->
+                    <!--<ul class="ztree" id="tree"></ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="layui-col-md10">-->
+                <!--<div class="calendar">-->
+                    <!--<div class="calendar-title">-->
+                        <!--<ul class="layui-nav" lay-filter="calendar">-->
+                            <!--<li class="layui-nav-item layui-this"><a href="" th:text="#{page.model.year}">年</a></li>-->
+                            <!--<li class="layui-nav-item"><a href="" th:text="#{page.model.month}">月</a></li>-->
+                        <!--</ul>-->
+                        <!--<div class="yearSelect">-->
+                            <!--<a class="laydate-prev" href="javascript:void(0);"><i class="layui-icon layui-icon-left" style="font-size:18px"></i></a>-->
+                            <!--<h2></h2>-->
+                            <!--<a class="laydate-next" href="javascript:void(0);"><i class="layui-icon layui-icon-right" style="font-size:18px"></i></a>-->
+                        <!--</div>-->
+                        <!--<div>-->
+                            <!--<div class="btn-group">-->
+                                <!--<button class="layui-btn layui-btn-sm allCheck" th:text="#{page.basic.select.all}">全选</button>-->
+                                <!--<button class="layui-btn layui-btn-sm descCheck" th:text="#{page.basic.invert.selection}">反选</button>-->
+                                <!--<button class="layui-btn layui-btn-sm cancel" th:text="#{page.basic.cancel}">取消</button>-->
+                                <!--<button class="layui-btn layui-btn-sm manySet" th:text="#{page.basic.volume.set}">批量设置</button>-->
+                                <!--<button class="layui-btn layui-btn-sm yearCopy" th:text="#{page.basic.years.copy}">按年复制</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div id="calendar-content">-->
+                        <!--<div id="yearContent">-->
+                            <!--<div class="site-demo-laydate"></div>-->
+                        <!--</div>-->
+                        <!--<div id="monthContent" style="width:100%;height:100%;"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--<script type="text/javascript" th:src="@{/public/editSelect/jquery.min.js}"></script>-->
+<!--&lt;!&ndash;引入i18next&ndash;&gt;-->
+<!--<script type="text/javascript" th:src="@{/public/i18next/i18next.min.js}"></script>-->
+<!--&lt;!&ndash;引入i18next 相关js&ndash;&gt;-->
+<!--<script type="text/javascript" th:src="@{/public/web/js/admin/language.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/public/layui/layui.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/public/zTree/js/jquery.ztree.core.js}"></script>-->
+<!--&lt;!&ndash;如果需要用到 编辑功能 或 checkbox / radio 还需要分别加载&ndash;&gt;-->
+<!--<script type="text/javascript" th:src="@{/public/zTree/js/jquery.ztree.excheck.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/public/zTree/js/jquery.ztree.exedit.js}"></script>-->
+
+<!--<script   type="text/javascript" th:src="@{/public/ajaxhook/ajaxhook.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/public/web/js/common.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/public/web/js/admin/basicData/workCalendar.js}"></script>-->
+<!--&lt;!&ndash;日工作时段设置&ndash;&gt;-->
+<!--<div class="layui-hide" id="dayWorkSet">-->
+    <!--<table id="daySet" lay-filter="daySet"></table>-->
+
+    <!--<script type="text/html" id="timeSet">-->
+        <!--<input type="hidden" name="timeRange" value="{{d.time}}" class="timeInput"/>-->
+        <!--<div class="time-range">{{d.time}}</div>-->
+    <!--</script>-->
+    <!--<script type="text/html" id="colorSet">-->
+        <!--<input type="hidden" name="color" value="{{d.color}}" class="colorInput" />-->
+        <!--<div class="color-all">{{d.color}}</div>-->
+    <!--</script>-->
+    <!--<script type="text/html" id="btn">-->
+        <!--<a class="layui-btn layui-btn-xs" lay-event="edit" th:text="#{page.label.deviation.edit}">编辑</a>-->
+        <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" th:text="#{page.label.calculation.delete}">删除</a>-->
+    <!--</script>-->
+
+    <!--<button class="layui-btn addRow" th:text="#{page.basic.add.row}">新增一行</button>-->
+<!--</div>-->
+<!--&lt;!&ndash;日工作时段设置/表格/编辑&ndash;&gt;-->
+<!--<form class="layui-form layui-hide" id="tableEdit" action="" method="">-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label" th:text="#{page.model.forecast.result.time}+'：'">时间：</label>-->
+        <!--<div class="layui-input-inline">-->
+            <!--<input type="text" class="layui-input" id="oTime">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label" th:text="#{page.basic.state}+'：'">状态：</label>-->
+        <!--<div class="layui-input-inline">-->
+            <!--<input type="text" class="layui-input" id="oStatus">-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label" th:text="#{page.basic.color}+'：'">颜色：</label>-->
+        <!--<div class="layui-input-inline">-->
+            <!--<input type="hidden" class="layui-input" id="oColor">-->
+            <!--<div class="color-all" id="oColorBtn"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item">-->
+        <!--<label class="layui-form-label" th:text="#{page.algorithms.memo}+'：'">备注：</label>-->
+        <!--<div class="layui-input-inline">-->
+            <!--<input type="text" class="layui-input" id="oDemo">-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</form>-->
+<!--&lt;!&ndash;日工作时段按年复制&ndash;&gt;-->
+<!--<form class="layui-form layui-hide" id="yearCopy" action="" method="">-->
+    <!--<div class="layui-form-item">-->
+        <!--<div>-->
+            <!--<input type="radio" name="copy" value="1" th:title="#{page.basic.selected.object.copy.itself}">-->
+            <!--<input type="text" class="layui-input" id="yearCopyTime1">-->
+            <!--<input type="text" class="layui-input" id="yearCopyTime11">-->
+            <!--<span th:text="#{page.basic.working.period.data}">对应日期的工作时段数据</span>-->
+        <!--</div>-->
+        <!--<div>-->
+            <!--<input type="radio" name="copy" value="2" th:title="#{page.basic.copy.uniformly.multiple.selected}" checked>-->
+            <!--<div class="yearCopyOption">-->
+                <!--<select name="copyOption" id="copyOption" lay-filter="copyOption"></select>-->
+            <!--</div>-->
+            <!--<div class="yearCopyTree">-->
+                <!--<select name="optionTree" lay-filter="optionTree"></select>-->
+            <!--</div>-->
+
+            <!--<input type="text" class="layui-input" id="yearCopyTime2">-->
+            <!--<input type="text" class="layui-input" id="yearCopyTime22">-->
+            <!--<span th:text="#{page.basic.daily.working.time.data}">对应日期的日工作时段数据</span>-->
+        <!--</div>-->
+
+    <!--</div>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
