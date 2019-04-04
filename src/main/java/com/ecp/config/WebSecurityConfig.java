@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.headers().frameOptions().sameOrigin();
-        http.authorizeRequests().antMatchers("/login", "/error", "/verificationCode", "/public/**").permitAll()
+        http.authorizeRequests().antMatchers("/login", "/user/registered", "/dept/getDept", "/registered", "/error", "/verificationCode", "/public/**").permitAll()
                 .anyRequest().authenticated().and()
                 .addFilterBefore(captchaMoreAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin().loginPage("/login")

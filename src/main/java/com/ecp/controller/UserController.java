@@ -58,6 +58,18 @@ public class UserController {
         }
     }
 
+    @PostMapping("/registered")
+    public Response registered(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
+        //try {
+        //    userService.saveUser(loginId, name, email, sex, status, note, phone, job, deptId);
+        //    return new Response(Response.CODE_OK);
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //    return new Response(Response.CODE_COMMON_ERROR, e.getMessage());
+        //}
+        return null;
+    }
+
     @DeleteMapping("/users/{id}")
     public Response deleteUser(@PathVariable Long id) {
         userRepo.deleteById(id);
@@ -186,7 +198,6 @@ public class UserController {
             return new Response(Response.CODE_COMMON_ERROR, e.getMessage());
         }
     }
-
 
 
 }
