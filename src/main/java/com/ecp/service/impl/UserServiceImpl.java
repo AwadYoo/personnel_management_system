@@ -9,6 +9,7 @@ import com.ecp.mode.dto.UserDTO;
 import com.ecp.repo.UserRepo;
 import com.ecp.service.CurrentUser;
 import com.ecp.service.UserService;
+import com.sun.xml.internal.bind.v2.TODO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -70,7 +71,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long id, String loginId, String name, String email, String sex, String status, String note,Long phone, String job, Long deptId) {
+    public void updateUser(Long id, String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
         userRepo.findById(id).ifPresent(user -> {
             user.setLoginId(loginId);
             user.setUserName(name);
@@ -100,6 +101,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Long getUserCount() {
         return userRepo.count();
+    }
+
+    @Override
+    public void registered(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
+        //TODO
     }
 
 

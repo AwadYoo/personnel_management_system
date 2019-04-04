@@ -22,4 +22,6 @@ public interface UserService {
     boolean unlockScreen(String password);
 
     Long getUserCount();
+
+    void registered(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId);
 }
