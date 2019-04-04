@@ -6,7 +6,7 @@ import org.springframework.security.core.AuthenticationException;
 /**
  * 账户锁定异常
  *
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-02-27 10:24
  */
 public class AccountLockedException  extends AuthenticationException {

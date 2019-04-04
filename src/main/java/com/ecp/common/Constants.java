@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * 常量接口
  *
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-02-25 11:09
  */
 

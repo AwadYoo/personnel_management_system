@@ -23,22 +23,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private WebLogoutHandler logoutHandler;
 
-    //    @Override
-//    protected void configure(HttpSecurity security) throws Exception {
-//        security.csrf().disable();
-//        security.headers().frameOptions().sameOrigin();
-//        security.authorizeRequests().anyRequest().authenticated().and()
-//                .addFilterBefore(captchaMoreAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
-//                .formLogin()
-//                .loginPage("/login")
-////                .and()
-////                .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
-////                .addLogoutHandler(logoutHandler).permitAll()
-//        ;
-////        security.addFilterAfter(
-////                new AjaxNotLoginRedirectFilter(), BasicAuthenticationFilter.class);
-//
-//    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -53,16 +37,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated().and()
                 .addFilterBefore(captchaMoreAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 .formLogin().loginPage("/login")
-                //.successForwardUrl("/admin/index")
-                //.defaultSuccessUrl("/admin/index")
-                //.loginProcessingUrl("/admin/login")
-                //.successHandler(loginHandler)
-                //.failureHandler(failureHandler)
-                //.failureUrl("/admin/login?error")
+
                 .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .addLogoutHandler(logoutHandler).permitAll();
-//    http.addFilterAfter(
-//            new AjaxNotLoginRedirectFilter(), BasicAuthenticationFilter.class);
     }
 
     @Autowired
@@ -90,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public LoginSuccessHandler loginSuccessHandler() {
         LoginSuccessHandler handler = new LoginSuccessHandler();
-        handler.setSuccessUrl("/index");
+        //handler.setSuccessUrl("/index");
         return handler;
     }
 

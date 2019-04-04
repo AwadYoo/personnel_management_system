@@ -65,7 +65,7 @@
                                                                          th:text="${session.user_name_in_session}"></cite></a>
                 <dl class="layui-nav-child">
                     <!--<dd><a href="javascript:;" th:attr="data-url=@{/admin/userInfo}"><i class="seraph icon-ziliao"-->
-                                                                                        <!--data-icon="icon-ziliao"></i><cite>个人资料</cite></a>-->
+                    <!--data-icon="icon-ziliao"></i><cite>个人资料</cite></a>-->
                     <!--</dd>-->
                     <dd><a href="javascript:;" th:attr="data-url=@{/admin/changePwd}"><i class="seraph icon-xiugai"
                                                                                          data-icon="icon-xiugai"></i><cite>修改密码</cite></a>
@@ -79,18 +79,21 @@
                 </dl>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" th:attr="data-url=@{/admin/userInfo}"><cite>个人中心</cite></a>
-
+                <a href="javascript:;" th:attr="data-url=@{/main}"><cite>主页</cite></a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;" th:attr="data-url=@{/admin/userList}"><cite>用户管理</cite></a>
+                <a href="javascript:;" th:attr="data-url=@{/admin/userInfoTemp}"><cite>个人中心</cite></a>
+
             </li>
-            <li class="layui-nav-item"><a href="javascript:;"
-                                          th:attr="data-url=@{/admin/deptList}"><cite>部门管理</cite></a></li>
-            <li class="layui-nav-item"><a href="javascript:;" th:attr="data-url=@{/admin/docList}"><cite>文件中心</cite></a>
+            <!--<li class="layui-nav-item">-->
+            <!--<a href="javascript:;" th:attr="data-url=@{/admin/userList}"><cite>用户管理</cite></a>-->
+            <!--</li>-->
+            <!--<li class="layui-nav-item"><a href="javascript:;"-->
+            <!--th:attr="data-url=@{/admin/deptList}"><cite>部门管理</cite></a></li>-->
+            <li class="layui-nav-item"><a href="javascript:;" th:attr="data-url=@{/admin/docListTemp}"><cite>文件下载</cite></a>
             </li>
-            <li class="layui-nav-item"><a href="javascript:;" th:attr="data-url=@{/admin/noticeList}"><cite>公告中心</cite></a>
-            </li>
+            <!--<li class="layui-nav-item"><a href="javascript:;" th:attr="data-url=@{/admin/noticeList}"><cite>公告中心</cite></a>-->
+            <!--</li>-->
 
         </ul>
 

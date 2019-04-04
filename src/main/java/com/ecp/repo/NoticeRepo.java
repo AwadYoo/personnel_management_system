@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 /**
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-03-13 13:54
  */
 public interface NoticeRepo extends JpaRepository<Notice, Long> {

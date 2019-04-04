@@ -9,7 +9,7 @@ import javax.persistence.Table;
 /**
  * 公告管理实体
  *
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-03-13 13:52
  */
 

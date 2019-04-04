@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-02-27 11:18
  */
 @Repository

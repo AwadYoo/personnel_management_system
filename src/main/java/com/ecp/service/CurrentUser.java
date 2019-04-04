@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 /**
  * 当前会话（session）下的用户信息
  *
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-02-25 11:07
  */
 @Service

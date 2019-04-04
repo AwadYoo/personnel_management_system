@@ -21,9 +21,6 @@ import java.time.ZonedDateTime;
 
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 
-
-    private String successUrl;
-
     @Autowired
     private UserRepo userRepo;
 
@@ -51,12 +48,9 @@ public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessH
             response.getWriter().write(Constants.mapper.writeValueAsString(res));
             response.getWriter().write("ajax login success");
         } else {
-            getRedirectStrategy().sendRedirect(request, response, successUrl);
+            getRedirectStrategy().sendRedirect(request, response, user.IsAdmin() ? "/index" : "/temp");
             //super.onAuthenticationSuccess(request, response, authentication);
         }
     }
 
-    public void setSuccessUrl(String url) {
-        this.successUrl = url;
-    }
 }

@@ -12,7 +12,7 @@ import java.io.OutputStream;
 /**
  * 验证码控制器
  *
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-02-25 13:26
  */
 @Controller

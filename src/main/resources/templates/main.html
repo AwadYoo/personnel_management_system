@@ -13,22 +13,28 @@
     <link rel="stylesheet" th:href="@{/public/layui/css/layui.css}" media="all"/>
     <link rel="stylesheet" th:href="@{/public/web/css/public.css}" media="all"/>
     <style>
-        .noticeTitle{
-            text-align:center;
+        .noticeTitle {
+            text-align: center;
+            background-color: #4191DF !important;
+            color: #ffffff;
         }
-        .noticeTitle1{
+
+        .noticeTitle1 {
             font-size: 24px;
-            padding-top: 120px;
+            padding-top: 100px;
+            font-family: -apple-system;
+
         }
-        .noticeCon{
-            padding-top: 20px;
+
+        .noticeCon {
+            padding-top: 40px;
 
         }
     </style>
 </head>
 <body class="childrenBody">
 <input type="hidden" id="userName" th:value="${session.user_name_in_session}">
-<input type="hidden" id="platformName" value="xx平台">
+<input type="hidden" id="platformName" value="人事管理平台">
 <blockquote class="layui-elem-quote layui-bg-black">
     <div id="nowTime"></div>
 </blockquote>
@@ -52,37 +58,37 @@
 <script type="text/javascript" th:src="@{/public/web/js/main.js}"></script>
 
 <script>
-    layui.use('carousel', function(){
+    layui.use('carousel', function () {
         var carousel = layui.carousel;
-        var $ =layui.$;
+        var $ = layui.$;
 
 
-    $.ajax({
-        type: "get",
-        url: "/notice/getNotices",
-        success: function (res) {
-            if (res.code == 0) {
-                var data = res.data;
-                var html = '<div carousel-item>';
-                if (data.length > 0) {
-                    data.forEach(function (item) {
-                        html += ' <div class="noticeTitle"><p class="noticeTitle1">' + item.content + '</p><p class="noticeCon">'+item.detail+'</p></div>'
-                    })
+        $.ajax({
+            type: "get",
+            url: "/notice/getNotices",
+            success: function (res) {
+                if (res.code == 0) {
+                    var data = res.data;
+                    var html = '<div carousel-item>';
+                    if (data.length > 0) {
+                        data.forEach(function (item) {
+                            html += ' <div class="noticeTitle"><p class="noticeTitle1">' + item.content + '</p><p class="noticeCon">' + item.detail + '</p></div>'
+                        })
+                    }
+                    html += '</div>'
+                    $("#notices").html(html);
+                    //建造实例
+                    carousel.render({
+                        elem: '#notices'
+                        , width: '100%' //设置容器宽度
+                        , arrow: 'always' //始终显示箭头
+                        //,anim: 'updown' //切换动画方式
+                    });
+                } else {
+                    layer.msg(res.msg, {icon: 5});
                 }
-                html+='</div>'
-                $("#notices").html(html);
-                //建造实例
-                carousel.render({
-                    elem: '#notices'
-                    ,width: '100%' //设置容器宽度
-                    ,arrow: 'always' //始终显示箭头
-                    //,anim: 'updown' //切换动画方式
-                });
-            } else {
-                layer.msg(res.msg, {icon: 5});
             }
-        }
-    });
+        });
     });
 
 </script>

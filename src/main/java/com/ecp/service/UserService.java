@@ -5,7 +5,7 @@ import com.ecp.mode.Response;
 import com.ecp.mode.dto.UserDTO;
 
 /**
- * @author 尤贺雨
+ * @author 于婉
  * @create 2019-02-26 13:40
  */
 public interface UserService {

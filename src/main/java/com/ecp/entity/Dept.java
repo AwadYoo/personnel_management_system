@@ -12,11 +12,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "tb_dept")
 public class Dept extends BaseEntity implements Serializable {
-
     private String name;
-
     private String leader;
-
     private String code;
-
 }

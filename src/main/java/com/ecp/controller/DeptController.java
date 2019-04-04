@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author 尤贺雨
- * @create 2019-02-27 11:44
- */
+
 @RestController
 @RequestMapping("/dept")
 public class DeptController {
