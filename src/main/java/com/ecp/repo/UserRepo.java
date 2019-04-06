@@ -12,9 +12,12 @@ import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.Optional;
+import java.util.stream.DoubleStream;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Long> {
+
+    @Query(nativeQuery = true, value = "select t.* from tb_user t where t.login_id = ?1 and t.checked = 1")
     Optional<User> findByLoginId(String loginId);
 
     Optional<User> findByLoginIdAndPassword(String loginId, String password);
@@ -36,4 +39,10 @@ public interface UserRepo extends JpaRepository<User, Long> {
     @Query("update User set password=?1 where id=?2")
     @Transactional
     void updatePassword(String newPassword, Long id);
+
+    @Query("select t from User t where t.checked = 0 ")
+    Page<User> findAllReviews(Pageable pageable);
+
+    @Query("select u from User u where checked = 0 and loginId like ?1 or userName like ?1 or email like ?1")
+    Page<User> findInKeyReviews(String key, Pageable pageable);
 }

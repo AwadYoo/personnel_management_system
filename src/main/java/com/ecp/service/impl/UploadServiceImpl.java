@@ -1,6 +1,5 @@
 package com.ecp.service.impl;
 
-import com.ecp.entity.Dept;
 import com.ecp.entity.Upload;
 import com.ecp.repo.UploadRepo;
 import com.ecp.service.UploadService;
@@ -15,6 +14,7 @@ public class UploadServiceImpl implements UploadService {
 
     @Autowired
     private UploadRepo uploadRepo;
+
     @Override
     public Page<Upload> getList(int page, int limit, String key) {
         Pageable pageable = PageRequest.of(page - 1, limit);

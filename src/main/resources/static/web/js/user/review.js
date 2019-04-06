@@ -9,7 +9,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
     //用户列表
     var tableIns = table.render({
         elem: '#userList',
-        url: ctx + 'user/users',
+        url: ctx + 'user/reviews',
         cellMinWidth: 95,
         page: true,
         height: "full-125",
@@ -33,8 +33,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             {field: 'phone', title: '手机', align: 'center'},
             {field: 'dept', title: '部门', align: 'center'},
             {field: 'job', title: '职位', align: 'center'},
-            {field: 'userStatus', title: '用户状态', align: 'center'},
-            {field: 'role', title: '角色', align: 'center'},
+            {field: 'checked', title: '审核状态', align: 'center'},
             {field: 'lastLoginTime', title: '最后登录时间', align: 'center', minWidth: 150},
             {type: "hidden", field: "userDesc"},
             {title: '操作', minWidth: 155, templet: '#userListBar', fixed: "right", align: "center"}
@@ -59,64 +58,6 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
         //layer.msg("请输入搜索的内容");
         //}
     });
-
-    //添加,修改用户
-    function addUser(edit) {
-        var index;
-        if (edit) {
-            index = layui.layer.open({
-                title: "修改用户",
-                type: 2,
-                content: ctx + "admin/userAdd",
-                success: function (layero, index) {
-                    var body = layui.layer.getChildFrame('body', index);
-                    body.find(".action").val("update");
-                    body.find(".id").val(edit.id);
-                    body.find(".loginId").val(edit.userId);//登录名
-                    body.find(".userName").val(edit.userName); // 姓名
-                    body.find(".userEmail").val(edit.userEmail);  //邮箱
-                    body.find("#_phone").val(edit.phone);
-                    body.find("#_job").val(edit.job);
-                    body.find("#deptSelect").val(edit.deptId);
-                    body.find("input[value='" + edit.userSex + "']").prop("checked", "checked");  //性别
-                    body.find(".userStatus").val(edit.userStatus);    //用户状态
-                    body.find("#_role").val(edit.role);    //用户状态
-                    body.find(".userDesc").val(edit.userDesc);    //用户简介
-                    var iframeWindow = layero.find('iframe')[0].contentWindow;
-                    iframeWindow.layui.form.render();
-                    setTimeout(function () {
-                        layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
-                            tips: 3
-                        });
-                    }, 500)
-                }
-            })
-        } else {
-            index = layui.layer.open({
-                title: "添加用户",
-                type: 2,
-                content: ctx + "admin/userAdd",
-                success: function () {
-                    var body = layui.layer.getChildFrame('body', index);
-                    body.find(".action").val("create");
-                    setTimeout(function () {
-                        layui.layer.tips('点击此处返回用户列表', '.layui-layer-setwin .layui-layer-close', {
-                            tips: 3
-                        });
-                    }, 500)
-                }
-            })
-        }
-        layui.layer.full(index);
-        //改变窗口大小时，重置弹窗的宽高，防止超出可视区域（如F12调出debug的操作）
-        $(window).on("resize", function () {
-            layui.layer.full(index);
-        })
-    }
-
-    $(".addNews_btn").click(function () {
-        addUser();
-    })
 
     //批量删除
     $(".delAll_btn").click(function () {
@@ -153,14 +94,10 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             addUser(data);
         } else if (layEvent === 'usable') { //启用禁用
             var _this = $(this),
-                usableText = "是否确定禁用此用户？";
+                usableText = "是否确定添加此用户？";
             //btnText = "已禁用";
-            var action = "disable";
-            if (_this.text() == "已禁用") {
-                usableText = "是否确定启用此用户？",
-                    //btnText = "已启用";
-                    action = "enable";
-            }
+            var action = "enable";
+
             layer.confirm(usableText, {
                 icon: 3,
                 title: '系统提示',
@@ -170,7 +107,7 @@ layui.use(['form', 'layer', 'table', 'laytpl'], function () {
             }, function (index) {
                 $.ajax({
                     type: "put",
-                    url: ctx + "user/users/" + data.id + "/" + action,
+                    url: ctx + "user/reviewUser/" + data.id + "/" + action,
                     success: function (res) {
                         if (res.code == 0) {
                             tableIns.reload();

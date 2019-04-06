@@ -62,6 +62,12 @@ public class User extends BaseEntity implements Serializable {
     @Column(name = "role")
     private Integer role;
 
+    /**
+     * 0-未审核  1-审核
+     */
+    @Column(name = "checked")
+    private Integer checked;
+
     public static Short getShortSex(String sex) {
         if ("男".equals(sex)) return 1;
         if ("女".equals(sex)) return 2;

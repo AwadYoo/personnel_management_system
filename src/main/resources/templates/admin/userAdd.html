@@ -54,8 +54,6 @@
         <label class="layui-form-label">部门</label>
         <div class="layui-input-block">
             <select name="dept" lay-filter="deptSelect" id="deptSelect">
-                <!--<option value="正常用户">正常用户</option>-->
-                <!--<option value="限制用户">限制用户</option>-->
             </select>
         </div>
     </div>
@@ -75,6 +73,15 @@
                 <select name="userStatus" class="userStatus" lay-filter="userStatus">
                     <option value="正常用户">正常用户</option>
                     <option value="限制用户">限制用户</option>
+                </select>
+            </div>
+        </div>
+        <div class="magb15 layui-col-md4 layui-col-xs12">
+            <label class="layui-form-label">角色</label>
+            <div class="layui-input-block">
+                <select name="role" class="userStatus" id= "_role" lay-filter="role">
+                    <option value="普通员工">普通员工</option>
+                    <option value="管理员">管理员</option>
                 </select>
             </div>
         </div>

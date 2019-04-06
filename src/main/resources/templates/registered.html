@@ -14,83 +14,79 @@
     <link rel="stylesheet" th:href="@{/public/web/css/public.css}" media="all"/>
 </head>
 <body class="childrenBody">
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>基于javaWeb的人事管理系统-平台注册</legend>
+</fieldset>
+<hr class="layui-bg-orange">
 <form class="layui-form" style="width:80%;">
-    <input type="hidden" class="action">
-    <input type="hidden" class="id">
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">登录名</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input loginId" lay-verify="required" placeholder="请输入登录名">
+    <div class="layui-col-md4 layui-col-xs12 user_right">
+        <div class="layui-upload-list">
+            <img
+                    th:src="@{/public/web/images/reg.png}">
         </div>
+        <p></p>
     </div>
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">用户姓名</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input userName" lay-verify="required" placeholder="请输入用户姓名">
-        </div>
-    </div>
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">邮箱</label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input userEmail" lay-verify="email" placeholder="请输入邮箱">
-        </div>
-    </div>
-
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">手机</label>
-        <div class="layui-input-block">
-            <input type="tel" lay-verify="required|phone" autocomplete="off" class="layui-input" id="_phone"
-                   placeholder="请输入手机">
-        </div>
-    </div>
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">职位</label>
-        <div class="layui-input-block">
-            <input type="text" lay-verify="title" autocomplete="off" placeholder="请输入职位" class="layui-input" id="_job">
-        </div>
-    </div>
-
-    <div class="magb15 layui-col-md4 layui-col-xs12">
-        <label class="layui-form-label">部门</label>
-        <div class="layui-input-block">
-            <select name="dept" lay-filter="deptSelect" id="deptSelect">
-                <!--<option value="正常用户">正常用户</option>-->
-                <!--<option value="限制用户">限制用户</option>-->
-            </select>
-        </div>
-    </div>
-
-    <div class="layui-row">
-        <div class="magb15 layui-col-md4 layui-col-xs12">
-            <label class="layui-form-label">性别</label>
-            <div class="layui-input-block userSex">
-                <input type="radio" name="sex" value="男" title="男">
-                <input type="radio" name="sex" value="女" title="女">
-                <input type="radio" name="sex" value="保密" title="保密">
+    <div class="layui-col-md6 layui-col-xs12">
+        <input type="hidden" class="action">
+        <input type="hidden" class="id">
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">登录名</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input loginId" lay-verify="required" placeholder="请输入登录名">
             </div>
         </div>
-        <!--<div class="magb15 layui-col-md4 layui-col-xs12">-->
-            <!--<label class="layui-form-label">用户状态</label>-->
-            <!--<div class="layui-input-block">-->
-                <!--<select name="userStatus" class="userStatus" lay-filter="userStatus">-->
-                    <!--<option value="正常用户">正常用户</option>-->
-                    <!--<option value="限制用户">限制用户</option>-->
-                <!--</select>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <label class="layui-form-label">备注</label>
-        <div class="layui-input-block">
-            <textarea placeholder="请输入用户简介" class="layui-textarea userDesc"></textarea>
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">用户姓名</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input userName" lay-verify="required" placeholder="请输入用户姓名">
+            </div>
         </div>
-    </div>
-    <div class="layui-form-item layui-row layui-col-xs12">
-        <div class="layui-input-block">
-            <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">保存</button>
-            <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-block">
+                <input type="text" class="layui-input userEmail" lay-verify="email" placeholder="请输入邮箱">
+            </div>
         </div>
-    </div>
+
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">手机</label>
+            <div class="layui-input-block">
+                <input type="tel" lay-verify="required|phone" autocomplete="off" class="layui-input" id="_phone"
+                       placeholder="请输入手机">
+            </div>
+        </div>
+        <div class="layui-form-item layui-row layui-col-xs12">
+            <label class="layui-form-label">职位</label>
+            <div class="layui-input-block">
+                <input type="text" lay-verify="title" autocomplete="off" placeholder="请输入职位" class="layui-input"
+                       id="_job">
+            </div>
+        </div>
+
+        <div class="magb15 layui-col-md4 layui-col-xs12">
+            <label class="layui-form-label">部门</label>
+            <div class="layui-input-block">
+                <select name="dept" lay-filter="deptSelect" id="deptSelect">
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-row">
+            <div class="magb15 layui-col-md4 layui-col-xs12">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-block userSex">
+                    <input type="radio" name="sex" value="男" title="男">
+                    <input type="radio" name="sex" value="女" title="女">
+                    <input type="radio" name="sex" value="保密" title="保密">
+                </div>
+            </div>
+            <div class="layui-form-item layui-row layui-col-xs12">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-sm" lay-submit="" lay-filter="addUser">保存</button>
+                    <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">取消</button>
+                </div>
+            </div>
+        </div>
 </form>
 <script type="text/javascript" th:src="@{/public/layui/layui.js}"></script>
 <script type="text/javascript" th:src="@{/public/web/js/user/registered.js}"></script>

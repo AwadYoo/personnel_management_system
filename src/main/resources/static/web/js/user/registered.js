@@ -8,27 +8,34 @@ layui.use(['form', 'layer'], function () {
         alert($(".action").val())
         var index = top.layer.msg('数据提交中，请稍候', {icon: 16, time: false, shade: 0.8});
         // 实际使用时的提交信息
-            $.post(ctx + "user/registered", {
-                loginId: $(".loginId").val(),//登录名
-                name: $(".userName").val(),//姓名
-                email: $(".userEmail").val(),  //邮箱
-                phone: $("#_phone").val(),
-                job: $("#_job").val(),
-                deptId: depId,
-                sex: data.field.sex,  //性别
-                status: data.field.userStatus,    //用户状态
-                note: $(".userDesc").val()    //用户简介
-            }, function (res) {
-                if (res.code == 0) {
-                    top.layer.close(index);
-                    top.layer.msg("用户注册申请提交成功！");
-                    layer.closeAll("iframe");
-                    //刷新父页面
-                    parent.location.reload();
-                } else {
-                    layer.msg(res.msg, {icon: 5});
-                }
-            });
+        $.post(ctx + "user/registered", {
+            loginId: $(".loginId").val(),//登录名
+            name: $(".userName").val(),//姓名
+            email: $(".userEmail").val(),  //邮箱
+            phone: $("#_phone").val(),
+            job: $("#_job").val(),
+            deptId: depId,
+            sex: data.field.sex,  //性别
+            status: data.field.userStatus,    //用户状态
+            note: $(".userDesc").val()    //用户简介
+        }, function (res) {
+            if (res.code == 0) {
+                // top.layer.close(index);
+                top.layer.msg("用户注册申请提交成功！",{
+                    time:3000,
+                    end:function () {
+                        location.href = "login"
+                    }
+                });
+                // layer.closeAll("iframe");
+                // layer.wait
+                // location.href = "login";
+                // //刷新父页面
+                // parent.location.reload();
+            } else {
+                layer.msg(res.msg, {icon: 5});
+            }
+        });
         // setTimeout(function(){
         //
         // },2000);

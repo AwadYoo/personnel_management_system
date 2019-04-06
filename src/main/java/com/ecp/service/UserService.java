@@ -9,13 +9,13 @@ import com.ecp.mode.dto.UserDTO;
  * @create 2019-02-26 13:40
  */
 public interface UserService {
-    void saveUser(String loginId, String name, String email, String sex, String status, String note,Long phone,String job,Long deptId);
+    void saveUser(String loginId, String name, String email, String sex, String status, String note,Long phone,String job,Long deptId, Integer role);
 
     Response<UserDTO> getAll(int page, int limit, String key);
 
     void updateState(Long id, String action);
 
-    void updateUser(Long id, String loginId, String name, String email, String sex, String status, String note,Long phone, String job, Long deptId);
+    void updateUser(Long id, String loginId, String name, String email, String sex, String status, String note,Long phone, String job, Long deptId, Integer role);
 
     String getLastLoginTime();
 
@@ -24,4 +24,8 @@ public interface UserService {
     Long getUserCount();
 
     void registered(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId);
+
+    void reviewUser(Long id, String action);
+
+    Response<UserDTO> reviews(int page, int limit, String key);
 }

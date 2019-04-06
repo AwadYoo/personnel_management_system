@@ -18,6 +18,7 @@ layui.use(['form', 'layer'], function () {
                 deptId: depId,
                 sex: data.field.sex,  //性别
                 status: data.field.userStatus,    //用户状态
+                role: data.field.role,    //用户状态
                 note: $(".userDesc").val()    //用户简介
             }, function (res) {
                 if (res.code == 0) {
@@ -42,6 +43,7 @@ layui.use(['form', 'layer'], function () {
                     job: $("#_job").val(),
                     deptId: depId,
                     sex: data.field.sex,  //性别
+                    role: data.field.role,    //用户状态
                     status: data.field.userStatus,    //用户状态
                     note: $(".userDesc").val()    //用户简介
                 },
@@ -73,7 +75,7 @@ layui.use(['form', 'layer'], function () {
                 var deptHtml = '';
                 if (deptData.length > 0) {
                     deptData.forEach(function (item) {
-                        deptHtml += ' <option value="' + item.id + '">' + item.name + '</option>'
+                        deptHtml += ' <option value="' + item.id + '" selected>' + item.name + '</option>'
                     })
                 }
                 $("#deptSelect").html(deptHtml);

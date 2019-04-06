@@ -3,6 +3,7 @@ package com.ecp.mode.dto;
 import com.ecp.entity.User;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -31,6 +32,11 @@ public class UserDTO implements Serializable {
     private Long phone;
     private String dept;
     private String job;
+    private Integer checked;
+    /**
+     * 1-admin 0-operator
+     */
+    private String role;
     //private String face;
 
     public UserDTO() {
@@ -49,6 +55,8 @@ public class UserDTO implements Serializable {
         this.userDesc = user.getMemo();
         this.phone = user.getPhone();
         this.job = user.getJob();
+        this.checked = user.getChecked();
+        this.role = StringUtils.isEmpty(user.getRole()) || user.getRole() == 1 ? "普通员工":"管理员";
         if (user.getDept() != null) {
             this.dept = user.getDept().getName();
         }

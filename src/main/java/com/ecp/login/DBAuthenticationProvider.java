@@ -56,9 +56,9 @@ public class DBAuthenticationProvider extends AbstractUserDetailsAuthenticationP
         if (!passwordEncoder.matches(password, userPassword))
             throw new PasswordNotMatchException(userId);
         boolean enabled = user.isEnabled();
-//        if (!enabled) {
-//            throw new AccountLockedException("账户已被锁定!请联系管理员");
-//        }
+        if (user.getChecked() == null || user.getChecked() == 0) {
+            throw new AccountLockedException("账户正在审核中。。");
+        }
         //boolean nonLocked = user.isAccountNonLocked();
         //ZonedDateTime d = user.getAccountExpiredTime();
         //boolean nonExpired = d == null ? true : d.toInstant().toEpochMilli() > System.currentTimeMillis();

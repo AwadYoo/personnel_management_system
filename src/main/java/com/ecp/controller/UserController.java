@@ -47,10 +47,16 @@ public class UserController {
         return userService.getAll(page, limit, key);
     }
 
+    @GetMapping("/reviews")
+    public Response<UserDTO> reviews(int page, int limit, String key) {
+        return userService.reviews(page, limit, key);
+    }
+
     @PostMapping("/users")
-    public Response addUser(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
+    public Response addUser(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId, String role) {
         try {
-            userService.saveUser(loginId, name, email, sex, status, note, phone, job, deptId);
+            int intRole = "普通员工".equals(role) ? 1 : 2;
+            userService.saveUser(loginId, name, email, sex, status, note, phone, job, deptId, intRole);
             return new Response(Response.CODE_OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,9 +84,10 @@ public class UserController {
 
     @PutMapping("/users/{id}")
     public Response updateUser(@PathVariable Long id, String loginId, String name, String email, String sex,
-                               String status, String note, Long phone, String job, Long deptId) {
+                               String status, String note, Long phone, String job, Long deptId, String role) {
         try {
-            userService.updateUser(id, loginId, name, email, sex, status, note, phone, job, deptId);
+            int intRole = "普通员工".equals(role) ? 1 : 2;
+            userService.updateUser(id, loginId, name, email, sex, status, note, phone, job, deptId, intRole);
             return new Response(Response.CODE_OK);
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,6 +99,17 @@ public class UserController {
     public Response updateUser(@PathVariable Long id, @PathVariable String action) {
         try {
             userService.updateState(id, action);
+            return new Response(Response.CODE_OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Response(Response.CODE_COMMON_ERROR, e.getMessage());
+        }
+    }
+
+    @PutMapping("/reviewUser/{id}/{action}")
+    public Response reviewUser(@PathVariable Long id, @PathVariable String action) {
+        try {
+            userService.reviewUser(id, action);
             return new Response(Response.CODE_OK);
         } catch (Exception e) {
             e.printStackTrace();

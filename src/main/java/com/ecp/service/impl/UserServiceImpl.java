@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     private CurrentUser currentUser;
 
     @Override
-    public void saveUser(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
+    public void saveUser(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId, Integer role) {
         User user = new User();
         user.setLoginId(loginId);
         user.setUserName(name);
@@ -47,7 +47,9 @@ public class UserServiceImpl implements UserService {
         user.setEnabled(User.getBooleanState(status));
         user.setJob(job);
         user.setPhone(phone);
+        user.setRole(role);
         user.setDeptId(deptId);
+        user.setChecked(1);
         userRepo.save(user);
     }
 
@@ -71,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(Long id, String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
+    public void updateUser(Long id, String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId, Integer role) {
         userRepo.findById(id).ifPresent(user -> {
             user.setLoginId(loginId);
             user.setUserName(name);
@@ -83,6 +85,7 @@ public class UserServiceImpl implements UserService {
             user.setUpdateTime(LocalDateTime.now());
             user.setJob(job);
             user.setPhone(phone);
+            user.setRole(role);
             user.setDeptId(deptId);
             userRepo.save(user);
         });
@@ -105,8 +108,45 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registered(String loginId, String name, String email, String sex, String status, String note, Long phone, String job, Long deptId) {
-        //TODO
+        User user = new User();
+        user.setUserName(name);
+        user.setLoginId(loginId);
+        user.setGender(User.getShortSex(sex));
+        user.setEmail(email);
+        user.setCreateUser("系统临时创建");
+        user.setMemo(note);
+        user.setCreateTime(LocalDateTime.now());
+        user.setPassword(passwordEncoder.encode(Constants.PARAMETER_USER_DEFAULT_PASSWORD));
+        user.setJob(job);
+        user.setEnabled(false);
+        user.setPhone(phone);
+        user.setDeptId(deptId);
+        user.setChecked(0);
+        user.setRole(1);
+        userRepo.save(user);
     }
 
+    @Override
+    public void reviewUser(Long id, String action) {
+        User user = userRepo.findById(id).get();
+        user.setUpdateUser(currentUser.userName());
+        user.setUpdateTime(LocalDateTime.now());
+        user.setChecked(1);
+        user.setEnabled(true);
+        user.setRole(1);
+        userRepo.save(user);
+    }
 
+    @Override
+    public Response<UserDTO> reviews(int page, int limit, String key) {
+        Page<UserDTO> pageUser;
+        Pageable pageable = PageRequest.of(page - 1, limit);
+        if (key == null) {
+            pageUser = userRepo.findAllReviews(pageable).map(user -> new UserDTO(user));
+        } else {
+            key = "%" + key + "%";
+            pageUser = userRepo.findInKeyReviews(key, pageable).map(user -> new UserDTO(user));
+        }
+        return new OKResponse<>(pageUser.getContent(), pageUser.getTotalElements());
+    }
 }

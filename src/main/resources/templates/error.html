@@ -5,15 +5,17 @@
     <meta charset="UTF-8">
     <title>error</title>
 </head>
-<body>
 
+<body>
+<img
+        th:src="@{/public/web/images/c404.png}">
 <!--&lt;!&ndash;<div th:text="${'错误信息: '+ session.getAttribute('failureReason')}"&ndash;&gt;-->
 <!--<div th:text="${session.getAttribute('failureReason')}"-->
-     <!--style="text-align:center;background:#ff8ca9;"></div>-->
+<!--style="text-align:center;background:#ff8ca9;"></div>-->
 
-<p th:text="${session.failureReason}" th:unless="${session == null}">[...]</p>
+<!--<p th:text="${session.failureReason}" th:unless="${session == null}">[...]</p>-->
 
-<p>error......</p>
+<!--<p>error......</p>-->
 </body>
 
 <script>
